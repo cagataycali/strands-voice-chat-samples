@@ -111,10 +111,6 @@ import pyaudio
 
 from strands import tool
 
-# Add SDK path for bidirectional imports
-sdk_path = Path(__file__).parent.parent / "sdk-python" / "src"
-if str(sdk_path) not in sys.path:
-    sys.path.insert(0, str(sdk_path))
 
 from strands.experimental.bidirectional_streaming.agent.agent import BidirectionalAgent
 from strands.experimental.bidirectional_streaming.models.gemini_live import GeminiLiveBidirectionalModel

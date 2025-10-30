@@ -17,8 +17,8 @@ smithy-aws-core>=0.0.1
 rx>=3.2.0
 pytz
 
-# Optional: OpenAI Realtime API (uncomment to enable)
-# openai>=1.68.0,<2.0.0
+# Optional: OpenAI Realtime API (comment to disable)
+openai>=1.68.0,<2.0.0
 
-# Optional: Gemini Live (uncomment to enable)
-# google-genai>=1.32.0,<2.0.0
+# Optional: Gemini Live (comment to disable)
+google-genai>=1.32.0,<2.0.0
