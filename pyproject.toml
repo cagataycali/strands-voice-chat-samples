@@ -1,0 +1,94 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "strands-voice-chat"
+version = "0.1.0"
+description = "Real-time bidirectional voice chat with Strands Agents using experimental bidirectional streaming"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Strands Voice Chat Contributors"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Communications",
+]
+
+dependencies = [
+    # Strands Agents SDK from forked repository with bidirectional streaming support
+    "strands-agents @ git+https://github.com/mehtarac/sdk-python.git",
+    "strands-agents-tools",
+    
+    # WebSocket server for browser-based voice chat
+    "websockets>=12.0,<14.0",
+    
+    # Audio processing for speech-to-speech
+    "pyaudio>=0.2.13",
+    
+    # AWS SDK for Nova Sonic bidirectional streaming - required for bidirectional-streaming
+    "aws_sdk_bedrock_runtime",
+    "smithy-aws-core>=0.0.1",
+    "rx>=3.2.0",
+    "pytz",
+]
+
+[project.optional-dependencies]
+# Additional model providers
+openai-realtime = [
+    "openai>=1.68.0,<2.0.0",
+]
+
+gemini-live = [
+    "google-genai>=1.32.0,<2.0.0",
+]
+
+# All providers
+all = [
+    "strands-voice-chat[openai-realtime,gemini-live]",
+]
+
+# Development dependencies
+dev = [
+    "pytest>=8.0.0,<9.0.0",
+    "pytest-asyncio>=1.0.0,<1.3.0",
+    "ruff>=0.13.0,<0.14.0",
+    "mypy>=1.15.0,<2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/strands-agents/sdk-python"
+Repository = "https://github.com/mehtarac/sdk-python"
+Documentation = "https://strandsagents.com"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tools"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.ruff]
+line-length = 120
+include = ["tools/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"

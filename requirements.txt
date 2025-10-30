@@ -1,0 +1,24 @@
+# Strands Voice Chat - Requirements
+# Install with: pip install -r requirements.txt
+
+# Strands Agents SDK with bidirectional streaming support from forked repository
+strands-agents @ git+https://github.com/mehtarac/sdk-python.git
+strands-agents-tools
+
+# WebSocket server for browser-based voice chat
+websockets>=12.0,<14.0
+
+# Audio processing for speech-to-speech
+pyaudio>=0.2.13
+
+# AWS SDK for Nova Sonic bidirectional streaming - required for bidirectional-streaming
+aws_sdk_bedrock_runtime
+smithy-aws-core>=0.0.1
+rx>=3.2.0
+pytz
+
+# Optional: OpenAI Realtime API (uncomment to enable)
+# openai>=1.68.0,<2.0.0
+
+# Optional: Gemini Live (uncomment to enable)
+# google-genai>=1.32.0,<2.0.0
