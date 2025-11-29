@@ -117,15 +117,12 @@ from typing import Any, Dict, List, Optional
 
 from strands import tool
 
-from strands.experimental.bidirectional_streaming.agent.agent import BidiAgent
-from strands.experimental.bidirectional_streaming.models.gemini_live import (
+from strands.experimental.bidi import (
+    BidiAgent,
     BidiGeminiLiveModel,
-)
-from strands.experimental.bidirectional_streaming.models.novasonic import (
     BidiNovaSonicModel,
-)
-from strands.experimental.bidirectional_streaming.models.openai import (
     BidiOpenAIRealtimeModel,
+    BidiAudioIO,
 )
 
 logger = logging.getLogger(__name__)
@@ -715,7 +712,7 @@ async def _receive_from_agent(agent, websocket, client_id: str, context: dict) -
     """Receive events from bidirectional agent and send to browser."""
     try:
         # Import TypedEvent classes
-        from strands.experimental.bidirectional_streaming.types.events import (
+        from strands.experimental.bidi import (
             BidiAudioStreamEvent,
             BidiTranscriptStreamEvent,
             BidiInterruptionEvent,

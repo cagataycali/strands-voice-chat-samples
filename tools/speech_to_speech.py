@@ -773,21 +773,16 @@ Examples:
 
 Always prefer using tools over generating text responses when tools are available. Keep your voice responses brief and natural."""
 
-        # Create bidirectional agent with inherited tools and audio I/O
+        # Create bidirectional agent with inherited tools
         bidi_agent = BidiAgent(
             model=model, 
             tools=tools, 
-            system_prompt=system_prompt,
-            audio_io=audio_io
+            system_prompt=system_prompt
         )
 
-        # Determine sample rates based on provider
-        if provider == "novasonic":
-            input_rate = 16000
-            output_rate = 16000
-        else:  # openai, gemini_live
-            input_rate = 24000
-            output_rate = 24000
+        # Get sample rates from model's audio config
+        input_rate = model.config["audio"]["input_rate"]
+        output_rate = model.config["audio"]["output_rate"]
 
         # Create and start session
         session = SpeechSession(
